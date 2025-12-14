@@ -2,5 +2,5 @@
 ### Key features
   * UART communication between FPGA and Computer via UARTs protocol
   * Viterbi decoder
-  * Showing enc/dec status on built-in display of sn32f407 evaluation kit
+  * Showing enc/dec status on sn32f407 evaluation kit built-in 4 digits 7 segments LCD
  
