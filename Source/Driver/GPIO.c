@@ -38,23 +38,19 @@
 *****************************************************************************/
 void GPIO_Init(void)
 {
-	//key row input
-	SN_GPIO1->MODE = 0xf << 4;	//p14~p17 4 pin input mode
-	//key col input 
-	SN_GPIO2->MODE = 0xf << 4;	//p24~p27 4 pin input mode
-
-	//set P3.8 output mode to driver LED0 
+	
+	// Set P3.8 output mode to drive LED0 
 	SN_GPIO3->MODE_b.MODE8 = 1;
 	SET_LED0_OFF;
-	//set P3.9 output mode to driver LED0 
+	// Set P3.9 output mode to drive LED1
 	SN_GPIO3->MODE_b.MODE9 = 1;	
 	SET_LED1_OFF;
 	
-	//set digital tube segment port output mode
+	// Set digital tube segment port output mode
 	SN_GPIO0->MODE = 0xff;	//p00~p07 8 pin output mode
 	SN_GPIO0->BCLR = 0xff;	//P00~P07 8 pin out put low
 	
-	//set digital tube COM port output
+	// Set digital tube COM port output
 	SN_GPIO1->MODE = 0x0f << 9;	//P19~P112	4 pin output mode
 	SN_GPIO1->BCLR = 0x0f << 9;	//P19~P112	4 pin output low
 	
