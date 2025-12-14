@@ -29,7 +29,7 @@ static int hamming_distance(const int expected[N_OUT], const uint8_t received[4]
     return d;
 }
 
-static void deinterleave(const uint8_t *in, uint8_t *out) {
+static void deinterleave(const unsigned char *in, unsigned char *out) {
     int r, c_pair;
     const int TOTAL_BITS = 32;  // 4 bytes * 8 bits
 
@@ -48,16 +48,9 @@ static void deinterleave(const uint8_t *in, uint8_t *out) {
         out_bits[i] = 0;
 
     /* original deinterleave logic */
-    for (c_pair = 0; c_pair < 4; c_pair++) {
-        for (r = 0; r < 4; r++) {
-
-            /* l?y 1 symbol (2 bit) */
-            unsigned char b1 = in_bits[TOTAL_BITS - 1 - (r*8 + 2*c_pair)];
-            unsigned char b0 = in_bits[TOTAL_BITS - 1 - (r*8 + 2*c_pair + 1)];
-
-            /* ghi sang v? trí m?i (transpose) */
-            out_bits[TOTAL_BITS - 1 - (c_pair*8 + r*2)]     = b1;
-            out_bits[TOTAL_BITS - 1 - (c_pair*8 + r*2 + 1)] = b0;
+     for (int r=0;r<8;r++) {
+        for (int c=0;c<4;c++) {
+            out_bits[TOTAL_BITS-1-(4*r+c)] = in_bits[TOTAL_BITS-1-(r+c*8)];
         }
     }
 

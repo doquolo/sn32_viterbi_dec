@@ -137,7 +137,11 @@ int	main(void)
 						
 						// Handle different sequence types
 						if (sequence_type == 1) {
-								// 0xFF 0xFF sequence
+							// show dec on display
+							segment_buff[0] = (SEG_B|SEG_C|SEG_D|SEG_E|SEG_G);
+							segment_buff[1] = (SEG_A|SEG_E|SEG_D|SEG_F|SEG_G);
+							segment_buff[2] = (SEG_G|SEG_E|SEG_D);
+							// 0xFF 0xFF sequence
 							deinterleave(data_buffer, deint_buffer);
 							for (int i = 0; i < 4; i++) {
 									UART0_SendByte(deint_buffer[i]);
@@ -149,6 +153,10 @@ int	main(void)
 							}
 						}
 						else if (sequence_type == 2) {
+								// show enc on display
+								segment_buff[0] = (SEG_A|SEG_E|SEG_D|SEG_F|SEG_G);
+								segment_buff[1] = (SEG_G|SEG_C|SEG_E);
+								segment_buff[2] = (SEG_G|SEG_E|SEG_D);
 								// 0x00 0x00 sequence
 								for (int i = 0; i < 2; i++) {
 										UART1_SendByte(data_buffer[i]); 
@@ -173,44 +181,8 @@ int	main(void)
 				uart1_read_cnt = 0;
 			}
 		}
-		
-//		// foward uart0 received byte to uart1
-//		while (uart0_read_cnt != GulNum)		//send the received data
-//		{
-//			UART1_SendByte(bUART0_RecvFIFO[uart0_read_cnt]);	
-//			uart0_read_cnt++;
-//			if(uart0_read_cnt >= UART0_BUFF_SIZE)			//uart0 buff boundary protect
-//			{
-//				uart0_read_cnt = 0;
-//			}
-//		}
-//		
-//		
-//		
-//		
-//		read_key = KeyScan();						//read key action
-//		if(read_key)								//key action occur,and is not key push event
-//		{
-//			for (int i = 0; i < 16; i++) {
-//				if (key_table[i] == read_key) {
-//					switch (i) {
-//						case (int)3:
-//							segment_buff[0] = (SEG_A|SEG_E|SEG_D|SEG_F|SEG_G);
-//							segment_buff[1] = (SEG_G|SEG_C|SEG_E);
-//							segment_buff[2] = (SEG_G|SEG_E|SEG_D);
-//							break;
-//						case (int)7:
-//							segment_buff[0] = (SEG_B|SEG_C|SEG_D|SEG_E|SEG_G);
-//							segment_buff[1] = (SEG_A|SEG_E|SEG_D|SEG_F|SEG_G);
-//							segment_buff[2] = (SEG_G|SEG_E|SEG_D);
-//							break;
-//						default:
-//							break;
-//					}
-//				}
-//			}
-//		}
-//		Digital_Scan();
+			
+		Digital_Scan();
 		UT_DelayNx10us(10);	
 	}
 }
