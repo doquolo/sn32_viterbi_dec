@@ -7,6 +7,7 @@
 #include "..\Module\KeyScan.h"
 #include "..\Module\Segment.h"
 #include "..\Module\Viterbi.c"
+#include "..\Module\Encoder.c"
 #include <SN32F400.h>
 #include <SN32F400_Def.h>
 
@@ -161,13 +162,20 @@ int main(void) {
             UART0_SendByte(dec_buffer[i]);
           }
         } else if (sequence_type == 2) { // Encoding packet (0x00 0x00)
-          // show enc on display **purely for decoration**
-          segment_buff[0] = (SEG_A | SEG_E | SEG_D | SEG_F | SEG_G);
-          segment_buff[1] = (SEG_G | SEG_C | SEG_E);
-          segment_buff[2] = (SEG_G | SEG_E | SEG_D);
-          // Sending bitstring to FPGA for encoding
-          for (int i = 0; i < 2; i++) {
-            UART1_SendByte(data_buffer[i]);
+//          // show enc on display **purely for decoration**
+//          segment_buff[0] = (SEG_A | SEG_E | SEG_D | SEG_F | SEG_G);
+//          segment_buff[1] = (SEG_G | SEG_C | SEG_E);
+//          segment_buff[2] = (SEG_G | SEG_E | SEG_D);
+//          // Sending bitstring to FPGA for encoding
+//          for (int i = 0; i < 2; i++) {
+//            UART1_SendByte(data_buffer[i]);
+//          }
+					EncoderOutput result = convolutional_encoder_bytes(data_buffer);
+					for (int i = 0; i < 4; i++) {
+						UART0_SendByte(result.out[i]);
+					}
+					for (int i = 0; i < 4; i++) {
+            UART1_SendByte(result.out[i]);
           }
         }
 

@@ -445,6 +445,11 @@
               <FileType>1</FileType>
               <FilePath>.\Source\Module\Viterbi.c</FilePath>
             </File>
+            <File>
+              <FileName>Encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\Module\Encoder.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

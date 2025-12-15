@@ -9,6 +9,7 @@
 ".\objects\keyscan.o"
 ".\objects\segment.o"
 ".\objects\viterbi.o"
+".\objects\encoder.o"
 ".\objects\startup_sn32f400.o"
 ".\objects\system_sn32f400.o"
 --strict --scatter ".\Objects\exp1_LED_blink.sct"

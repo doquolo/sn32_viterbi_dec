@@ -320,16 +320,17 @@ ARM Macro Assembler    Page 5
               00000000 
 Command Line: --debug --xref --diag_suppress=9931,A1950W --cpu=Cortex-M0 --depe
 nd=.\objects\startup_sn32f400.d -o.\objects\startup_sn32f400.o -I.\RTE\_Target_
-1 -IF:\KeilC\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include -IF:\KeilC\Packs\SONiX\SN
-32F4_DFP\1.1.1\Device\Include --predefine="__UVISION_VERSION SETA 543" --predef
-ine="SN32F400 SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\startup_sn32
+1 -IC:\Users\doquolo\AppData\Local\Arm\Packs\ARM\CMSIS\6.2.0\CMSIS\Core\Include
+ -IC:\Users\doquolo\AppData\Local\Arm\Packs\SONiX\SN32F4_DFP\1.1.1\Device\Inclu
+de --predefine="__UVISION_VERSION SETA 543" --predefine="SN32F400 SETA 1" --pre
 
 
 
 ARM Macro Assembler    Page 6 
 
 
-f400.lst RTE/Device/SN32F407F/startup_SN32F400.s
+define="_RTE_ SETA 1" --list=.\listings\startup_sn32f400.lst RTE/Device/SN32F40
+7F/startup_SN32F400.s
 
 
 
